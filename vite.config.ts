@@ -9,8 +9,8 @@ export default defineConfig({
     allowedHosts: [
       "localhost",
       "127.0.0.1",
-      "sih2025form-production.up.railway.app"
-    ]
+      "sih2025form-production.up.railway.app",
+    ],
   },
   build: {
     rollupOptions: {
