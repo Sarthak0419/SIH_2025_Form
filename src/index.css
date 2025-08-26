@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+* {
+  @apply box-border;
+}
+
+body {
+  @apply bg-[#061842] text-white;
+}
+
+.form-input {
+  @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200;
+}
+
+.form-input.error {
+  @apply border-red-400 focus:ring-red-500;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-50rem) rotate(180deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-100rem) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+.float-shape {
+  animation: float 20s linear infinite;
+}
