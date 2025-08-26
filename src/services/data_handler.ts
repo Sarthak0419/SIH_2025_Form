@@ -19,9 +19,9 @@ export async function connectDB(): Promise<Db> {
     if (!client) {
       client = new MongoClient(uri, {
         maxPoolSize: 10,
-        serverSelectionTimeoutMS: 5000,
+        serverSelectionTimeoutMS: 30000,
         socketTimeoutMS: 45000,
-        connectTimeoutMS: 10000,
+        connectTimeoutMS: 30000,
         heartbeatFrequencyMS: 30000,
         tls: true,
         tlsAllowInvalidCertificates: false,
@@ -31,10 +31,15 @@ export async function connectDB(): Promise<Db> {
       });
 
       console.log("Connecting to MongoDB Atlas...");
+      console.log("MongoDB URI:", uri ? "URI present" : "URI missing");
+      console.log("Database name:", dbName || "DB name missing");
+      
       await client.connect();
+      console.log("✅ MongoDB client connected successfully");
 
       // Test the connection
       await client.db("admin").command({ ping: 1 });
+      console.log("✅ MongoDB ping test successful");
 
       db = client.db(dbName);
       console.log("✅ Connected to MongoDB Atlas successfully");
@@ -42,6 +47,13 @@ export async function connectDB(): Promise<Db> {
     return db!; // Non-null assertion since we know it's assigned above
   } catch (error) {
     console.error("❌ Error connecting to MongoDB:", error);
+    
+    // Enhanced error logging for debugging
+    if (error instanceof Error) {
+      console.error("❌ Error name:", error.name);
+      console.error("❌ Error message:", error.message);
+      console.error("❌ Error stack:", error.stack);
+    }
 
     // Reset client on connection failure
     if (client) {
