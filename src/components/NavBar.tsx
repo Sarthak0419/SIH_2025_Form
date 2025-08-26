@@ -17,15 +17,10 @@ const NavBar = () => {
           {navlinks.map((link) => (
             <li className="text-white " key={link.name}>
               <a
-                href="#"
+                href={link.path}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-2.5 py-2.5 rounded-3xl transition-colors duration-300 hover:bg-white/10 hover:backdrop-blur-md hover:border "
-                onClick={() => {
-                  if (link.name === "SIH 2025") {
-                    window.open("https://sih.gov.in/", "_blank");
-                  } else if (link.name === "Problem Statements") {
-                    window.open("https://sih.gov.in/sih2025PS", "_blank");
-                  }
-                }}
               >
                 {link.name}
               </a>

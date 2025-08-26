@@ -23,6 +23,11 @@ export async function connectDB(): Promise<Db> {
         socketTimeoutMS: 45000,
         connectTimeoutMS: 10000,
         heartbeatFrequencyMS: 30000,
+        tls: true,
+        tlsAllowInvalidCertificates: false,
+        tlsAllowInvalidHostnames: false,
+        retryWrites: true,
+        w: "majority",
       });
 
       console.log("Connecting to MongoDB Atlas...");

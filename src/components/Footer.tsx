@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="font-semibold tracking-wide">
           Smart India Hackathon 2025-2026
           <img
-            src="src/assets/logo.webp"
+            src="/logo.webp"
             alt="Logo"
             className="h-8 w-8 float-left rounded-2xl object-center mr-3"
           />
