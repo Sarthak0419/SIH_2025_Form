@@ -1,0 +1,107 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Explicitly declare text files you want to always be normalized and converted
+# to native line endings on checkout
+*.ts text
+*.tsx text
+*.js text
+*.jsx text
+*.json text
+*.md text
+*.txt text
+*.yml text
+*.yaml text
+*.css text
+*.scss text
+*.sass text
+*.html text
+*.htm text
+*.xml text
+*.svg text
+*.env text
+
+# Declare files that will always have CRLF line endings on checkout
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Declare files that will always have LF line endings on checkout
+*.sh text eol=lf
+
+# Denote all files that are truly binary and should not be modified
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.mov binary
+*.mp4 binary
+*.mp3 binary
+*.flv binary
+*.fla binary
+*.swf binary
+*.gz binary
+*.zip binary
+*.7z binary
+*.ttf binary
+*.eot binary
+*.woff binary
+*.woff2 binary
+*.otf binary
+*.pdf binary
+
+# Archive files
+*.tar binary
+*.tgz binary
+
+# Fonts
+*.ttf binary
+*.eot binary
+*.woff binary
+*.woff2 binary
+
+# Executables
+*.exe binary
+*.dll binary
+*.so binary
+*.dylib binary
+
+# Lock files should not be modified
+package-lock.json binary
+yarn.lock binary
+pnpm-lock.yaml binary
+
+# Source maps
+*.map text
+
+# Configuration files
+.gitignore text
+.gitattributes text
+.editorconfig text
+.eslintrc* text
+.prettierrc* text
+tsconfig*.json text
+vite.config.* text
+tailwind.config.* text
+
+# Node.js
+node_modules/ export-ignore
+
+# Build outputs
+dist/ export-ignore
+build/ export-ignore
+.next/ export-ignore
+out/ export-ignore
+
+# Environment files (keep local, don't normalize)
+.env* text
+
+# Log files
+*.log text
+
+# Documentation
+README* text
+CHANGELOG* text
+LICENSE* text
+CONTRIBUTING* text
