@@ -1,6 +1,7 @@
 import Footer from "./components/Footer";
 import Form from "./components/Form";
 import NavBar from "./components/NavBar";
+import { Analytics } from "@vercel/analytics/react";
 
 const App = () => {
   // Set the favicon dynamically
@@ -16,6 +17,7 @@ const App = () => {
       <NavBar />
       <Form />
       <Footer />
+      <Analytics />
     </>
   );
 };
