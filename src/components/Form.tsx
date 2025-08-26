@@ -30,7 +30,11 @@ const Form = () => {
   } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
-    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+    // Use production API URL if in production, otherwise use dev URL
+    const backendUrl = import.meta.env.PROD 
+      ? import.meta.env.VITE_BACKEND_URL_PRODUCTION || 'https://sih-2025-form.vercel.app/api'
+      : import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+    
     try {
       await axios.post<string>(`${backendUrl}/submit`, data);
       setIsSuccessful(true); // Show success component

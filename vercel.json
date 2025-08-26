@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "env": {
+    "MONGODB_URI": "@mongodb_uri",
+    "MONGODB_DB_NAME": "@mongodb_db_name", 
+    "MONGODB_COLLECTION": "@mongodb_collection",
+    "ADMIN_KEY": "@admin_key",
+    "FRONTEND_URL": "https://sih-2025-form.vercel.app"
+  }
+}
