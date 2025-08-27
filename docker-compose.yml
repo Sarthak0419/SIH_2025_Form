@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: sih2025-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - MONGODB_URI=${MONGODB_URI}
+      - MONGODB_DB_NAME=${MONGODB_DB_NAME}
+      - MONGODB_COLLECTION=${MONGODB_COLLECTION:-Registrations}
+      - FRONTEND_URL=${FRONTEND_URL:-http://localhost:8080}
+      - ADMIN_KEY=${ADMIN_KEY}
+    restart: unless-stopped
+    networks:
+      - sih2025-network
+    depends_on:
+      - db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        - VITE_BACKEND_URL=${VITE_BACKEND_URL:-http://localhost:3000}
+    container_name: sih2025-frontend
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    networks:
+      - sih2025-network
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Optional: Local MongoDB for development
+  db:
+    image: mongo:6.0
+    container_name: sih2025-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:-password}
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - sih2025-network
+    restart: unless-stopped
+
+volumes:
+  mongodb_data:
+
+networks:
+  sih2025-network:
+    driver: bridge
