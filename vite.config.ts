@@ -6,10 +6,11 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
-    port: 8080,
-  },
-  preview: {
-    port: 8080,
+    allowedHosts: [
+      "localhost",
+      "127.0.0.1",
+      "sih2025form-production.up.railway.app",
+    ],
   },
   build: {
     rollupOptions: {
